@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 const userdetails = () => {
   const router = useRouter();
   const userId = router?.query?.id;
-  const [userDetails, serUserDetails] = useState(null);
+  const [userDetails, serUserDetails] = useState({});
   const [loading, serLoading] = useState(false);
 
   useEffect(() => {
@@ -18,12 +18,10 @@ const userdetails = () => {
   const fetchUsersDetails = async () => {
     serLoading(true);
     try {
-      const users = await axios.get(
-        `https://jsonplaceholder.typicode.com/users/${userId}`
-      );
+      const users = await axios.get(`http://localhost:5000/todo/${userId}`);
       serLoading(false);
-      console.log(users.data);
-      serUserDetails(users.data);
+      console.log(users.data.result[0]);
+      serUserDetails(users.data.result[0]);
     } catch (error) {
       toast.error("Faild to Fetch User Data.");
       serLoading(false);
@@ -38,7 +36,7 @@ const userdetails = () => {
         {userDetails && (
           <div className="text-xl">
             <p>
-              Name : <span>{userDetails?.username}</span>
+              Name : <span>{userDetails?.name}</span>
             </p>
             <p>
               phone : <span>{userDetails?.phone}</span>
@@ -48,7 +46,7 @@ const userdetails = () => {
             </p>
 
             <p>
-              City : <span>{userDetails?.address?.city}</span>
+              City : <span>{userDetails?.address}</span>
             </p>
           </div>
         )}

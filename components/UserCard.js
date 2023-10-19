@@ -7,7 +7,7 @@ const UserCard = ({ data, deleteUsers, updateUser }) => {
     <div
       onClick={() => {
         router.push({
-          pathname: `/userdetails/${data.id}`,
+          pathname: `/userdetails/${data._id}`,
         });
       }}
       className="flex justify-between px-3 py-2 border border-gray-200"
