@@ -18,7 +18,9 @@ const userdetails = () => {
   const fetchUsersDetails = async () => {
     serLoading(true);
     try {
-      const users = await axios.get(`http://localhost:5000/todo/${userId}`);
+      const users = await axios.get(
+        `https://servercoderslab.vercel.app/todo/${userId}`
+      );
       serLoading(false);
       console.log(users.data.result[0]);
       serUserDetails(users.data.result[0]);

@@ -16,7 +16,7 @@ export default function Home() {
   const fetchUsers = async () => {
     serLoading(true);
     try {
-      const users = await axios.get("http://localhost:5000/todo");
+      const users = await axios.get("https://servercoderslab.vercel.app/todo");
       serLoading(false);
       console.log(users.data.result);
       serUser(users.data.result);
@@ -40,7 +40,10 @@ export default function Home() {
     };
     serLoading(true);
     try {
-      const users = await axios.post("http://localhost:5000/todo", userData);
+      const users = await axios.post(
+        "https://servercoderslab.vercel.app/todo",
+        userData
+      );
       serLoading(false);
       console.log(users.data);
       toast.success("Successfully!");
@@ -58,7 +61,9 @@ export default function Home() {
     e.stopPropagation();
     serLoading(true);
     try {
-      const data = await axios.delete(`http://localhost:5000/todo/${id}`);
+      const data = await axios.delete(
+        `https://servercoderslab.vercel.app/todo/${id}`
+      );
       if (data?.status === 200) {
         toast.success("Successfully Deleted!");
         fetchUsers();
@@ -82,7 +87,7 @@ export default function Home() {
     serLoading(true);
     try {
       const users = await axios.patch(
-        `http://localhost:5000/todo/${id}`,
+        `https://servercoderslab.vercel.app/todo/${id}`,
         userData
       );
       serLoading(false);
